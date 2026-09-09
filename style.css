@@ -872,15 +872,58 @@ code, .tech-badge, .font-mono {
 }
 
 /* Coming Soon Card Styling */
-.project-card.coming-soon {
+.project-card.coming-soon,
+.project-card.coming-soon-card {
   border-style: dashed;
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.15);
   background: rgba(15, 22, 36, 0.45);
 }
 
-.project-card.coming-soon:hover {
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.1);
+.project-card.coming-soon:hover,
+.project-card.coming-soon-card:hover {
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.12);
+}
+
+.coming-soon-status {
+  font-size: 0.78rem;
+  color: #FBBF24;
+}
+
+.coming-soon-radar {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  margin-top: 6px;
+  margin-bottom: 24px;
+  max-width: 100%;
+}
+
+.radar-ping {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #FBBF24;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.radar-ping::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid #FBBF24;
+  animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+.radar-text {
+  font-size: 0.8rem;
+  color: #FDE68A;
 }
 
 /* --- Contact & CTA Section --- */
@@ -1127,20 +1170,34 @@ code, .tech-badge, .font-mono {
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 48px;
     text-align: left;
   }
 
   .hero-visual {
-    justify-content: flex-start;
+    justify-content: center;
+  }
+
+  .profile-card-wrapper {
+    max-width: 380px;
   }
 
   .skills-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills-grid .domain-card:last-child {
+    grid-column: 1 / -1;
   }
 
   .contact-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1154,46 +1211,66 @@ code, .tech-badge, .font-mono {
   }
 
   .hero {
-    padding: 50px 0 40px;
+    padding: 48px 0 36px;
   }
 
   .hero-headline {
-    font-size: 2.1rem;
+    font-size: clamp(1.9rem, 5.5vw, 2.4rem);
   }
 
   .profile-card-wrapper {
-    max-width: 100%;
+    max-width: 340px;
+    width: 100%;
   }
 
   .profile-image-frame {
-    height: 320px;
+    height: clamp(260px, 65vw, 340px);
   }
 
-  .projects-grid {
+  .skills-grid {
     grid-template-columns: 1fr;
   }
 
+  .skills-grid .domain-card:last-child {
+    grid-column: auto;
+  }
+
   .contact-card-main {
-    padding: 36px 22px;
+    padding: 40px 24px;
+    border-radius: 22px;
+  }
+
+  .contact-headline {
+    font-size: 2rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    padding: 0 16px;
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
   }
 
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 16px;
+  .project-card {
+    padding: 24px 18px;
   }
 
-  .hero-headline {
-    font-size: 1.85rem;
+  .domain-card {
+    padding: 24px 18px;
   }
 
   .hero-actions {
@@ -1201,12 +1278,52 @@ code, .tech-badge, .font-mono {
     align-items: stretch;
   }
 
-  .btn {
+  .hero-actions .btn {
     width: 100%;
   }
 
   .project-actions {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .project-actions .btn {
+    width: 100%;
+  }
+
+  .projects-filter-bar {
+    gap: 8px;
+  }
+
+  .filter-btn {
+    padding: 6px 14px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .brand-status {
+    display: none;
+  }
+
+  .header-cta-group .btn-sm {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+
+  .hero-headline {
+    font-size: 1.65rem;
+  }
+
+  .contact-card-main {
+    padding: 28px 16px;
+  }
+
+  .contact-value {
+    font-size: 0.86rem;
   }
 }

@@ -86,7 +86,7 @@ function initProjectFilter() {
       projectCards.forEach((card) => {
         const cardCategory = card.getAttribute('data-category');
 
-        if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+        if (selectedCategory === 'all' || cardCategory === selectedCategory || cardCategory === 'all') {
           card.classList.remove('is-hidden');
           setTimeout(() => {
             card.style.opacity = '1';
