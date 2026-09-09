@@ -1,189 +1,443 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Portfolio</title>
+  <title>Muhammad Ibnu Syafrizal — Front-End Developer & AI Web Solutions</title>
+  <meta name="description" content="Front-End Developer & AI Web Solutions Builder specializing in clean, zero-dependency architectures, serverless API integrations, and conversion-focused web applications." />
+  <meta name="keywords" content="Muhammad Ibnu Syafrizal, Front-End Developer, AI Web Solutions, Vanilla JavaScript, Serverless, Google Gemini API, Web Development Portfolio" />
+  <meta name="author" content="Muhammad Ibnu Syafrizal Azra Nardi" />
+  <meta name="theme-color" content="#0A0D14" />
+
+  <!-- Open Graph / Meta Cards -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Muhammad Ibnu Syafrizal — Front-End Developer & AI Web Solutions" />
+  <meta property="og:description" content="Building High-Performance Web Applications & AI-Driven Digital Experiences. Explore featured projects, serverless AI terminals, and client platforms." />
+  <meta property="og:url" content="https://ibnusyafrizal15-cmyk.github.io/portfolio/" />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- Site Header & Navigation -->
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true">●</span>
-        <span class="brand-text">Digital Portfolio</span>
-      </div>
+      <a href="#hero" class="brand-link" aria-label="Home">
+        <div class="brand-symbol">IS</div>
+        <div class="brand-info">
+          <span class="brand-name">Ibnu Syafrizal</span>
+          <span class="brand-status">
+            <span class="pulse-dot"></span>
+            Available for Projects
+          </span>
+        </div>
+      </a>
 
-      <nav class="nav" aria-label="Navigasi utama">
-        <a class="nav-link" href="#perkenalan">About Me</a>
-        <a class="nav-link" href="#keahlian">Skill</a>
-        <a class="nav-link" href="#kontak">Contact</a>
-        <a class="nav-link" href="#portfolio">Recent Projects</a>
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop" aria-label="Main Navigation">
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Featured Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
       </nav>
 
-      <button class="nav-toggle" type="button" aria-label="Buka menu" aria-expanded="false">
-        ☰
-      </button>
+      <!-- Header CTA & Mobile Hamburger -->
+      <div class="header-cta-group">
+        <a class="btn btn-emerald btn-sm" href="https://wa.me/6285718528435?text=Hello%20Ibnu,%20I'm%20interested%20in%20discussing%20a%20web%20project!" target="_blank" rel="noopener noreferrer">
+          Let's Talk ↗
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation drawer" aria-expanded="false">
+          ☰
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Hero / Perkenalan -->
+  <!-- Mobile Drawer Overlay -->
+  <div class="nav-overlay" aria-hidden="true"></div>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside class="nav-drawer" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <span class="brand-name">Navigation</span>
+      <span class="brand-status">
+        <span class="pulse-dot"></span> Available
+      </span>
+    </div>
+    <div class="drawer-links">
+      <a class="drawer-link" href="#about">About</a>
+      <a class="drawer-link" href="#skills">Skills</a>
+      <a class="drawer-link" href="#projects">Featured Projects</a>
+      <a class="drawer-link" href="#contact">Contact</a>
+    </div>
+    <div style="margin-top: auto;">
+      <a class="btn btn-primary" style="width: 100%;" href="https://wa.me/6285718528435" target="_blank" rel="noopener noreferrer">
+        Get In Touch via WhatsApp
+      </a>
+    </div>
+  </aside>
+
   <main>
-    <section class="hero" id="perkenalan">
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
       <div class="container hero-grid">
-        <div class="hero-photo">
-          <img src="img/foto.png" alt="Foto profil" />
-        </div>
-
         <div class="hero-content">
-          <h1>Muhammad Ibnu Syafrizal Azra Nardi</h1>
-          <p class="subtitle">Digital Marketing & Ads Specialist</p>
+          <div class="hero-badge-container">
+            <span class="pulse-dot"></span>
+            <span>FRONT-END & AI WEB ARCHITECT</span>
+          </div>
 
-          <p class="bio">
-            Saya fokus pada digital marketing dan pengelolaan iklan digital berbasis data. Terbiasa merancang strategi kampanye, membuat copywriting yang menarik, serta mengoptimalkan performa ads untuk meningkatkan konversi dan penjualan secara konsisten.
+          <p class="hero-title-name">Muhammad Ibnu Syafrizal Azra Nardi</p>
+          <h1 class="hero-headline">Building High-Performance Web Applications & AI-Driven Digital Experiences.</h1>
+
+          <p class="hero-elevator">
+            Front-End Developer specializing in clean, zero-dependency architectures, serverless API integrations, and conversion-focused web solutions for businesses.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#kontak">Hubungi Saya</a>          </div>
+            <a class="btn btn-primary" href="#projects">
+              Explore Projects ↓
+            </a>
+            <a class="btn btn-secondary" href="https://wa.me/6285718528435?text=Hi%20Ibnu,%20I'd%20like%20to%20discuss%20a%20project%20collaboration." target="_blank" rel="noopener noreferrer">
+              Get In Touch via WhatsApp 💬
+            </a>
+          </div>
 
-          <ul class="quick-facts">
-            <li><span class="fact-label">Lokasi</span> :Tangerang, Indonesia</li>
-            <li><span class="fact-label">Pengalaman</span> : 1–2 Tahun</li>
-            <li><span class="fact-label">Status</span> : Mahasiswa & Freelancer</li>
-          </ul>
+          <!-- Quick Metrics / Tech Pills -->
+          <div class="metrics-strip">
+            <div class="metric-pill">
+              <span class="metric-dot"></span>
+              Vanilla JS Specialist
+            </div>
+            <div class="metric-pill">
+              <span class="metric-dot"></span>
+              Serverless API Architecture
+            </div>
+            <div class="metric-pill">
+              <span class="metric-dot"></span>
+              100% Responsive Design
+            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Keahlian -->
-    <section class="skills" id="keahlian">
-      <div class="container">
-        <div class="section-title">
-          <h2>Skill</h2>
-          <p>Beberapa kemampuan yang saya kuasai.</p>
-        </div>
-
-        <div class="skills-grid">
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">⚡</div>
-            <h3>Meta Ads</h3>
-            <p>Memasang iklan melalui Meta ads untuk Facebook & Instagram</p>
-            <span class="skill-tag">Ads</span>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">🎨</div>
-            <h3>Content Editing</h3>
-            <p>Mengedit konten berupa gambar & video untuk pemasaran/iklan digital</p>
-            <span class="skill-tag">Creative</span>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">🧩</div>
-            <h3>Strategic Insight</h3>
-            <p>Menentukan serta menyusun strategi marketing & iklan yang efektif  </p>
-            <span class="skill-tag">Strategy</span>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">🧠</div>
-            <h3>Audience Targeting</h3>
-            <p>Menentukan target market yang tepat berdasarkan data, minat, dan perilaku audiens</p>
-            <span class="skill-tag">Targeting</span>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">🔧</div>
-            <h3>Ads Optimization</h3>
-            <p>Meningkatkan performa iklan melalui testing, scaling, dan analisis campaign</p>
-            <span class="skill-tag">Performance</span>
-          </article>
-
-          <article class="skill-card">
-            <div class="skill-icon" aria-hidden="true">🗂️</div>
-            <h3>Funnel Planning</h3>
-            <p>Menyusun alur marketing funnel untuk meningkatkan conversion dan penjualan.</p>
-            <span class="skill-tag">Conversion</span>
-          </article>
-        </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section class="projects" id="portfolio">
-      <div class="container">
-        <div class="section-title">
-          <h2>Recent Projects</h2>
-          <p>Beberapa Projects yang pernah dikerjakan.</p>
-        </div>
-        <div class="projects-content">
-          <div class="coming-soon">
-            <h3>🚧 Coming Soon</h3>
-            <p>Segera hadir! Portfolio dan project terbaru sedang dalam pengembangan.</p>
+        <!-- Hero Visual Profile Card -->
+        <div class="hero-visual" id="about">
+          <div class="profile-card-wrapper">
+            <div class="profile-glow-ring"></div>
+            <div class="profile-card">
+              <div class="profile-image-frame">
+                <img src="img/foto.png" alt="Muhammad Ibnu Syafrizal Azra Nardi" />
+                <div class="profile-floating-chip">
+                  <span class="chip-status-text">Tangerang, Indonesia (GMT+7)</span>
+                  <span class="chip-role">Open for Hire</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Kontak (bagian tambahan di footer anchoring) -->
-    <section class="contact" id="kontak">
-      <div class="container contact-inner">
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>Terbuka untuk kolaborasi, project, dan peluang kerja di bidang digital marketing & ads.
-<b>Let’s connect and create something impactful!</b></p>
+    <!-- Skills Section (3 Core Domains) -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Engineered For Performance</span>
+          <h2 class="section-title">Technical Expertise & Core Domains</h2>
+          <p class="section-subtitle">
+            A balanced foundation of high-speed frontend craftsmanship, modern serverless cloud logic, and analytical telemetry.
+          </p>
         </div>
 
-        <div class="contact-grid">
-          <a class="contact-item" href="#" aria-label="Email">
-            <span class="contact-bullet" aria-hidden="true">✉️</span>
-            <span>Email: Ibnusyafrizal05@gmail.com</span>
-          </a>
-          <a class="contact-item" href="#" aria-label="WhatsApp">
-            <span class="contact-bullet" aria-hidden="true">💬</span>
-            <span>WhatsApp: 085718528435</span>
-          </a>
-          <a class="contact-item" href="#" aria-label="GitHub">
-            <span class="contact-bullet" aria-hidden="true">🐙</span>
-            <span>LinkedIn: www.linkedin.com/in/ibnu-syafrizal</span>
-          </a>
+        <div class="skills-grid">
+          <!-- Domain 1: Front-End Architecture -->
+          <article class="domain-card">
+            <div class="domain-header">
+              <div class="domain-icon">⚡</div>
+              <div>
+                <span class="domain-index">DOMAIN 01</span>
+                <h3 class="domain-title">Front-End Architecture</h3>
+              </div>
+            </div>
+            <p class="domain-description">
+              Crafting fluid, accessible, and ultra-responsive user interfaces with semantic precision, modular styling systems, and zero bloated runtime overhead.
+            </p>
+            <div class="skill-pills-list">
+              <span class="skill-tag">HTML5 Semantic</span>
+              <span class="skill-tag">Modern CSS3 Grid & Flexbox</span>
+              <span class="skill-tag">ES6+ JavaScript</span>
+              <span class="skill-tag">UI/UX Micro-interactions</span>
+              <span class="skill-tag">Component State</span>
+            </div>
+          </article>
+
+          <!-- Domain 2: Backend & AI Integration -->
+          <article class="domain-card">
+            <div class="domain-header">
+              <div class="domain-icon">🧠</div>
+              <div>
+                <span class="domain-index">DOMAIN 02</span>
+                <h3 class="domain-title">Backend & AI Integration</h3>
+              </div>
+            </div>
+            <p class="domain-description">
+              Connecting front-end clients to intelligent cloud endpoints, streaming LLM models, serverless edge functions, and real-time structured data feeds.
+            </p>
+            <div class="skill-pills-list">
+              <span class="skill-tag">Node.js Runtime</span>
+              <span class="skill-tag">Vercel Serverless Functions</span>
+              <span class="skill-tag">Google Gemini API</span>
+              <span class="skill-tag">REST APIs & Endpoints</span>
+              <span class="skill-tag">RSS Ingestion Pipelines</span>
+            </div>
+          </article>
+
+          <!-- Domain 3: Performance & Analytics -->
+          <article class="domain-card">
+            <div class="domain-header">
+              <div class="domain-icon">📊</div>
+              <div>
+                <span class="domain-index">DOMAIN 03</span>
+                <h3 class="domain-title">Performance & Analytics</h3>
+              </div>
+            </div>
+            <p class="domain-description">
+              Ensuring sub-second load times, robust version control workflows, automated deployment lifecycles, and measurable user conversion tracking.
+            </p>
+            <div class="skill-pills-list">
+              <span class="skill-tag">Google Analytics 4 (GA4)</span>
+              <span class="skill-tag">Git & GitHub CI/CD</span>
+              <span class="skill-tag">Cross-Device Optimization</span>
+              <span class="skill-tag">Core Web Vitals</span>
+              <span class="skill-tag">SEO Best Practices</span>
+            </div>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Proven Deployments</span>
+          <h2 class="section-title">Featured Projects & Live Solutions</h2>
+          <p class="section-subtitle">
+            Explore functional web applications, real-time AI analytics terminals, and production-ready business platforms.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="projects-filter-bar">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="ai">AI & APIs</button>
+          <button class="filter-btn" data-filter="client">Client Solutions</button>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: Crypto Sentiment Pulse -->
+          <article class="project-card" data-category="ai">
+            <div>
+              <div class="project-top">
+                <span class="project-category-badge">AI & APIs</span>
+                <span class="font-mono" style="font-size: 0.78rem; color: var(--accent-cyan);">Live Terminal</span>
+              </div>
+              <h3 class="project-title">Crypto Sentiment Pulse</h3>
+              <p class="project-subtitle">Real-Time AI Sentiment Analysis & Market Pulse Engine</p>
+              <p class="project-desc">
+                A serverless FinTech terminal processing real-time CoinDesk RSS feeds, analyzing market sentiment using Google Gemini 1.5 Flash API, and computing visual Bullish/Bearish ratios.
+              </p>
+              <div class="project-tech-badges">
+                <span class="tech-badge">Vanilla JS</span>
+                <span class="tech-badge">CSS3 Glassmorphism</span>
+                <span class="tech-badge">Vercel Serverless</span>
+                <span class="tech-badge">Google Gemini API</span>
+                <span class="tech-badge">RSS Feed Pipeline</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary btn-sm" href="https://crypto-sentiment-pulse-c0dhq59bt-ibn-project.vercel.app/" target="_blank" rel="noopener noreferrer">
+                Live Demo ↗
+              </a>
+              <a class="btn btn-secondary btn-sm" href="https://github.com/ibnusyafrizal15-cmyk/crypto-sentiment-pulse" target="_blank" rel="noopener noreferrer">
+                Source Code ⌥
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 2: KOPI SENJA -->
+          <article class="project-card" data-category="client">
+            <div>
+              <div class="project-top">
+                <span class="project-category-badge client">Client Solutions</span>
+                <span class="font-mono" style="font-size: 0.78rem; color: var(--accent-emerald-bright);">Commercial Demo</span>
+              </div>
+              <h3 class="project-title">KOPI SENJA — F&B Commercial Web Platform</h3>
+              <p class="project-subtitle emerald">Interactive Multi-Tier Experience & Direct Booking Engine</p>
+              <p class="project-desc">
+                A production-ready client showcase platform featuring an interactive demo package switcher (Starter, Growth, Premium AI), zero-reload DOM menu filters, direct WhatsApp reservation encoding, and simulated 24/7 AI FAQ assistant.
+              </p>
+              <div class="project-tech-badges">
+                <span class="tech-badge">Vanilla HTML5/CSS3</span>
+                <span class="tech-badge">ES6+ Architecture</span>
+                <span class="tech-badge">DOM State Management</span>
+                <span class="tech-badge">WhatsApp API</span>
+                <span class="tech-badge">GA4 Telemetry</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-emerald btn-sm" href="https://ibnusyafrizal15-cmyk.github.io/KOPI-SENJA/" target="_blank" rel="noopener noreferrer">
+                Live Demo ↗
+              </a>
+              <a class="btn btn-secondary btn-sm" href="https://github.com/ibnusyafrizal15-cmyk/KOPI-SENJA" target="_blank" rel="noopener noreferrer">
+                Source Code ⌥
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 3: Developer Portfolio -->
+          <article class="project-card" data-category="client">
+            <div>
+              <div class="project-top">
+                <span class="project-category-badge client">Client Solutions</span>
+                <span class="font-mono" style="font-size: 0.78rem; color: var(--accent-emerald-bright);">Portfolio</span>
+              </div>
+              <h3 class="project-title">Developer Portfolio & Interactive Showcase</h3>
+              <p class="project-subtitle emerald">Lightweight Personal Brand Architecture</p>
+              <p class="project-desc">
+                Zero-dependency developer portfolio built with semantic web standards, dark mode glassmorphic UI, dynamic project category filters, and interactive clipboard feedback controllers.
+              </p>
+              <div class="project-tech-badges">
+                <span class="tech-badge">HTML5 Semantic</span>
+                <span class="tech-badge">CSS Variables & Tokens</span>
+                <span class="tech-badge">Modular Vanilla JS</span>
+                <span class="tech-badge">GitHub Pages CI</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-primary btn-sm" href="https://ibnusyafrizal15-cmyk.github.io/portfolio/" target="_blank" rel="noopener noreferrer">
+                Live Demo ↗
+              </a>
+              <a class="btn btn-secondary btn-sm" href="https://github.com/ibnusyafrizal15-cmyk/portfolio" target="_blank" rel="noopener noreferrer">
+                Source Code ⌥
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 4: Coming Soon Card -->
+          <article class="project-card coming-soon" data-category="ai">
+            <div>
+              <div class="project-top">
+                <span class="project-category-badge pipeline">In the Pipeline 🚀</span>
+                <span class="font-mono" style="font-size: 0.78rem; color: #FBBF24;">Active Sprint</span>
+              </div>
+              <h3 class="project-title">Intelligent Automation Suite</h3>
+              <p class="project-subtitle" style="color: #FBBF24;">Next Innovation • In Active Development</p>
+              <p class="project-desc">
+                Next-generation full-stack web application exploring intelligent workflow automation, automated prompt chaining, and predictive user dashboards. Stay tuned for deployment.
+              </p>
+              <div class="project-tech-badges">
+                <span class="tech-badge">Full-Stack JS</span>
+                <span class="tech-badge">Serverless</span>
+                <span class="tech-badge">Autonomous Agents</span>
+                <span class="tech-badge">Real-Time Webhooks</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <span class="font-mono" style="font-size: 0.84rem; color: var(--text-muted);">
+                Deployment scheduled for upcoming sprint.
+              </span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Call to Action Section -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card-main">
+          <div class="contact-header">
+            <span class="section-tag">Let's Connect</span>
+            <h2 class="contact-headline">Ready to Bring Your Digital Vision to Life?</h2>
+            <p class="contact-subtext">
+              Open for freelance client projects, web development contracts, and engineering collaborations. Let's build something remarkable together.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Email Action Card with 1-click copy -->
+            <div class="contact-action-card" data-copy-email="Ibnusyafrizal05@gmail.com" title="Click to copy email address">
+              <div class="contact-icon-wrapper">✉️</div>
+              <span class="contact-label">Direct Email</span>
+              <span class="contact-value">Ibnusyafrizal05@gmail.com</span>
+              <span class="contact-action-hint">Click to copy 📋</span>
+            </div>
+
+            <!-- WhatsApp Direct Link -->
+            <a class="contact-action-card whatsapp" href="https://wa.me/6285718528435?text=Hello%20Ibnu,%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20project!" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon-wrapper">💬</div>
+              <span class="contact-label">WhatsApp</span>
+              <span class="contact-value">+62 857-1852-8435</span>
+              <span class="contact-action-hint">Chat now ↗</span>
+            </a>
+
+            <!-- LinkedIn Profile -->
+            <a class="contact-action-card" href="https://www.linkedin.com/in/ibnu-syafrizal" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon-wrapper">🔗</div>
+              <span class="contact-label">LinkedIn</span>
+              <span class="contact-value">in/ibnu-syafrizal</span>
+              <span class="contact-action-hint">Connect ↗</span>
+            </a>
+
+            <!-- GitHub Profile -->
+            <a class="contact-action-card" href="https://github.com/ibnusyafrizal15-cmyk" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon-wrapper">🐙</div>
+              <span class="contact-label">GitHub</span>
+              <span class="contact-value">@ibnusyafrizal15-cmyk</span>
+              <span class="contact-action-hint">View code ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-left">
-        <div class="brand">
-          <span class="brand-mark" aria-hidden="true">●</span>
-          <span class="brand-text">Muhammad Ibnu Syafrizal Azra Nardi</span>
-        </div>
-        <p class="footer-copy">© <span id="year"></span> • Semua hak dilindungi.</p>
+        <span class="footer-brand">Muhammad Ibnu Syafrizal Azra Nardi</span>
+        <p class="footer-copy">
+          © <span class="current-year"></span> • Engineered with clean vanilla web standards. All rights reserved.
+        </p>
       </div>
 
       <div class="footer-right">
-        <a class="footer-link" href="#perkenalan">Kembali ke atas</a>
-        <a class="footer-link" href="#portfolio">Recent Projects</a>
-        <a class="footer-link" href="#keahlian">Skill</a>
+        <a class="footer-link" href="#about">About</a>
+        <a class="footer-link" href="#skills">Skills</a>
+        <a class="footer-link" href="#projects">Projects</a>
+        <a class="footer-link" href="#contact">Contact</a>
+        <a class="back-to-top-btn" href="#hero">
+          ↑ Top
+        </a>
       </div>
+    </div>
   </footer>
 
-  <script>
-    // Toggle mobile nav
-    const toggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.nav');
+  <!-- Toast Notification for Copy Feedback -->
+  <div id="copy-toast" class="copy-toast" role="status" aria-live="polite">
+    <span class="toast-icon">✓</span>
+    <span class="toast-text">Email Copied to Clipboard!</span>
+  </div>
 
-    if (toggle && nav) {
-      toggle.addEventListener('click', () => {
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', String(!expanded));
-        nav.classList.toggle('nav-open');
-      });
-    }
-
-    // Year
-    const yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-  </script>
+  <!-- Client Interaction Script -->
+  <script src="script.js"></script>
 </body>
 </html>
