@@ -41,7 +41,7 @@
 
 | Project | Domain / Type | Tech Stack | Live Demo | Repository |
 | :--- | :--- | :--- | :--- | :--- |
-| **Crypto Sentiment Pulse** | Real-Time AI FinTech Terminal | Vanilla JS, CSS3, Vercel Serverless, Google Gemini API, RSS Feed | [Live Demo](https://crypto-sentiment-pulse-c0dhq59bt-ibn-project.vercel.app/) | [GitHub](https://github.com/ibnusyafrizal15-cmyk/crypto-sentiment-pulse) |
+| **Crypto Sentiment Pulse** | Real-Time AI FinTech Terminal | Vanilla JS, CSS3, Vercel Serverless, Google Gemini API, RSS Feed | [Live Demo](https://crypto-sentiment-pulse.vercel.app/) | [GitHub](https://github.com/ibnusyafrizal15-cmyk/crypto-sentiment-pulse) |
 | **KOPI SENJA** | F&B Commercial Platform | Vanilla HTML5/CSS3, ES6+, WhatsApp API, GA4 Telemetry | [Live Demo](https://ibnusyafrizal15-cmyk.github.io/KOPI-SENJA/) | [GitHub](https://github.com/ibnusyafrizal15-cmyk/KOPI-SENJA) |
 | **Developer Portfolio** | Personal Brand Architecture | HTML5 Semantic, CSS Variables, Modular Vanilla JS | [Live Demo](https://ibnusyafrizal15-cmyk.github.io/portfolio/) | [GitHub](https://github.com/ibnusyafrizal15-cmyk/portfolio) |
 | **More Projects** | Upcoming Innovations | Full-Stack JS, Serverless, Intelligent Automation | *In Development* ⏳ | — |
