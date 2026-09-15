@@ -112,7 +112,6 @@ function initProjectsCarousel() {
   if (!wrapper || !track || !prevBtn || !nextBtn) return;
 
   let currentIndex = 0;
-  let allCards = [];
 
   function getSlidesPerView() {
     return window.innerWidth <= 768 ? 1 : 2;
@@ -159,20 +158,14 @@ function initProjectsCarousel() {
     const perView = getSlidesPerView();
     const startCardIndex = currentIndex * perView;
 
-    // Show only the cards for this page, hide others in track
-    // We use inline order trick: shift the track so the right cards are visible
-    // Since cards are filtered out with display:none, we need to move by visible card widths
-    const visibleInTrack = Array.from(track.querySelectorAll('.project-card'));
-    let offset = 0;
+    // Calculate the pixel gap from computed style
+    const gap = parseFloat(window.getComputedStyle(track).gap) || 28;
 
+    // Calculate offset based on card width + gap
+    let offset = 0;
     if (visible.length > 0 && startCardIndex < visible.length) {
-      const targetCard = visible[startCardIndex];
-      // Calculate offset relative to track start
-      const trackRect = track.getBoundingClientRect();
-      const cardRect = targetCard.getBoundingClientRect();
-      // Use the card's position relative to the wrapper
-      const wrapperRect = wrapper.getBoundingClientRect();
-      offset = targetCard.offsetLeft;
+      const cardWidth = visible[0].getBoundingClientRect().width;
+      offset = startCardIndex * (cardWidth + gap);
     }
 
     track.style.transform = `translateX(-${offset}px)`;
