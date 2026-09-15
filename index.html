@@ -277,7 +277,9 @@
           <button class="filter-btn" data-filter="event">Event Pages</button>
         </div>
 
-        <div class="projects-grid">
+        <!-- Projects Carousel Wrapper -->
+        <div class="projects-carousel-wrapper" id="projectsCarouselWrapper">
+          <div class="projects-carousel-track" id="projectsCarouselTrack">
           <!-- Project 1: Crypto Sentiment Pulse -->
           <article class="project-card" data-category="ai">
             <div>
@@ -420,7 +422,16 @@
               </span>
             </div>
           </article>
+          </div><!-- end track -->
+        </div><!-- end carousel wrapper -->
+
+        <!-- Projects Carousel Controls -->
+        <div class="carousel-controls projects-carousel-controls" aria-label="Projects carousel navigation">
+          <button class="carousel-btn carousel-btn--prev" id="projectsPrev" aria-label="Previous projects" type="button">&#8592;</button>
+          <div class="carousel-dots" id="projectsDots" role="tablist" aria-label="Projects carousel position"></div>
+          <button class="carousel-btn carousel-btn--next" id="projectsNext" aria-label="Next projects" type="button">&#8594;</button>
         </div>
+
       </div>
     </section>
 

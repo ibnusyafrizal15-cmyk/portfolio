@@ -7,6 +7,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initProjectFilter();
+  initProjectsCarousel();
   initClipboardHelper();
   initDynamicYear();
   initScrollSpy();
@@ -69,7 +70,7 @@ function initNavigation() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Project Category Filter                                                   */
+/* Project Category Filter (integrates with Projects Carousel)               */
 /* -------------------------------------------------------------------------- */
 function initProjectFilter() {
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -86,23 +87,158 @@ function initProjectFilter() {
 
       projectCards.forEach((card) => {
         const cardCategory = card.getAttribute('data-category');
-
-        if (selectedCategory === 'all' || cardCategory === selectedCategory || cardCategory === 'all') {
-          card.classList.remove('is-hidden');
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(15px)';
-          setTimeout(() => {
-            card.classList.add('is-hidden');
-          }, 250);
-        }
+        const isVisible = selectedCategory === 'all' || cardCategory === selectedCategory || cardCategory === 'all';
+        card.classList.toggle('is-filtered-out', !isVisible);
       });
+
+      // Tell the carousel to rebuild after filter changes
+      if (window._projectsCarousel) {
+        window._projectsCarousel.rebuild();
+      }
     });
   });
+}
+
+/* -------------------------------------------------------------------------- */
+/* Projects Carousel Controller (2-per-view)                                 */
+/* -------------------------------------------------------------------------- */
+function initProjectsCarousel() {
+  const wrapper = document.getElementById('projectsCarouselWrapper');
+  const track = document.getElementById('projectsCarouselTrack');
+  const prevBtn = document.getElementById('projectsPrev');
+  const nextBtn = document.getElementById('projectsNext');
+  const dotsContainer = document.getElementById('projectsDots');
+
+  if (!wrapper || !track || !prevBtn || !nextBtn) return;
+
+  let currentIndex = 0;
+  let allCards = [];
+
+  function getSlidesPerView() {
+    return window.innerWidth <= 768 ? 1 : 2;
+  }
+
+  function getVisibleCards() {
+    return Array.from(track.querySelectorAll('.project-card:not(.is-filtered-out)'));
+  }
+
+  function getTotalPages() {
+    const visible = getVisibleCards().length;
+    const perView = getSlidesPerView();
+    return Math.max(1, Math.ceil(visible / perView));
+  }
+
+  function buildDots() {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    const total = getTotalPages();
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === currentIndex ? ' is-active' : '');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Page ${i + 1}`);
+      dot.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function updateDots() {
+    if (!dotsContainer) return;
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === currentIndex);
+      dot.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+    });
+  }
+
+  function goTo(index) {
+    const total = getTotalPages();
+    currentIndex = Math.max(0, Math.min(index, total - 1));
+
+    const visible = getVisibleCards();
+    const perView = getSlidesPerView();
+    const startCardIndex = currentIndex * perView;
+
+    // Show only the cards for this page, hide others in track
+    // We use inline order trick: shift the track so the right cards are visible
+    // Since cards are filtered out with display:none, we need to move by visible card widths
+    const visibleInTrack = Array.from(track.querySelectorAll('.project-card'));
+    let offset = 0;
+
+    if (visible.length > 0 && startCardIndex < visible.length) {
+      const targetCard = visible[startCardIndex];
+      // Calculate offset relative to track start
+      const trackRect = track.getBoundingClientRect();
+      const cardRect = targetCard.getBoundingClientRect();
+      // Use the card's position relative to the wrapper
+      const wrapperRect = wrapper.getBoundingClientRect();
+      offset = targetCard.offsetLeft;
+    }
+
+    track.style.transform = `translateX(-${offset}px)`;
+
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= total - 1;
+    updateDots();
+  }
+
+  function rebuild() {
+    currentIndex = 0;
+    buildDots();
+    goTo(0);
+  }
+
+  // Expose rebuild for filter integration
+  window._projectsCarousel = { rebuild };
+
+  prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
+  nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+
+  // Keyboard arrow support
+  wrapper.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentIndex - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex + 1); }
+  });
+
+  // Drag / swipe support
+  let dragStartX = 0;
+  let isDragging = false;
+
+  wrapper.addEventListener('pointerdown', (e) => {
+    dragStartX = e.clientX;
+    isDragging = true;
+    wrapper.setPointerCapture(e.pointerId);
+  });
+
+  wrapper.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+  }, { passive: false });
+
+  wrapper.addEventListener('pointerup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const delta = dragStartX - e.clientX;
+    if (delta > 60) goTo(currentIndex + 1);
+    else if (delta < -60) goTo(currentIndex - 1);
+  });
+
+  wrapper.addEventListener('pointercancel', () => { isDragging = false; });
+
+  // Responsive resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      buildDots();
+      currentIndex = Math.min(currentIndex, getTotalPages() - 1);
+      goTo(currentIndex);
+    }, 180);
+  });
+
+  // Init
+  buildDots();
+  goTo(0);
 }
 
 /* -------------------------------------------------------------------------- */
