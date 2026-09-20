@@ -196,27 +196,37 @@ function initProjectsCarousel() {
   // Drag / swipe support
   let dragStartX = 0;
   let isDragging = false;
+  let hasDragged = false;
+  const DRAG_THRESHOLD = 60;
 
   wrapper.addEventListener('pointerdown', (e) => {
+    // Only track primary pointer (ignore right-click, multi-touch secondary)
+    if (e.button !== 0) return;
     dragStartX = e.clientX;
     isDragging = true;
-    wrapper.setPointerCapture(e.pointerId);
+    hasDragged = false;
+    // NOTE: Do NOT call setPointerCapture here — it prevents <a> clicks inside the carousel
   });
 
   wrapper.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
-    e.preventDefault();
+    const delta = Math.abs(e.clientX - dragStartX);
+    if (delta > DRAG_THRESHOLD) {
+      hasDragged = true;
+      e.preventDefault(); // only block scrolling when clearly dragging
+    }
   }, { passive: false });
 
   wrapper.addEventListener('pointerup', (e) => {
     if (!isDragging) return;
     isDragging = false;
+    if (!hasDragged) return; // short movement = normal click, don't intercept
     const delta = dragStartX - e.clientX;
-    if (delta > 60) goTo(currentIndex + 1);
-    else if (delta < -60) goTo(currentIndex - 1);
+    if (delta > DRAG_THRESHOLD) goTo(currentIndex + 1);
+    else if (delta < -DRAG_THRESHOLD) goTo(currentIndex - 1);
   });
 
-  wrapper.addEventListener('pointercancel', () => { isDragging = false; });
+  wrapper.addEventListener('pointercancel', () => { isDragging = false; hasDragged = false; });
 
   // Responsive resize
   let resizeTimer;
@@ -415,32 +425,40 @@ function initSkillsCarousel() {
   // Pointer drag / touch swipe support
   let dragStartX = 0;
   let isDragging = false;
+  let hasDragged = false;
+  const DRAG_THRESHOLD = 60;
 
   wrapper.addEventListener('pointerdown', (e) => {
+    // Only track primary pointer (ignore right-click, multi-touch secondary)
+    if (e.button !== 0) return;
     dragStartX = e.clientX;
     isDragging = true;
-    wrapper.setPointerCapture(e.pointerId);
+    hasDragged = false;
+    // NOTE: Do NOT call setPointerCapture here — it prevents <a> clicks inside the carousel
   });
 
   wrapper.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
-    // Prevent text selection while dragging
-    e.preventDefault();
+    const delta = Math.abs(e.clientX - dragStartX);
+    if (delta > DRAG_THRESHOLD) {
+      hasDragged = true;
+      e.preventDefault(); // only block scrolling when clearly dragging
+    }
   }, { passive: false });
 
   wrapper.addEventListener('pointerup', (e) => {
     if (!isDragging) return;
     isDragging = false;
+    if (!hasDragged) return; // short movement = normal click, don't intercept
     const delta = dragStartX - e.clientX;
-    const threshold = 60;
-    if (delta > threshold) {
+    if (delta > DRAG_THRESHOLD) {
       goTo(currentIndex + 1);
-    } else if (delta < -threshold) {
+    } else if (delta < -DRAG_THRESHOLD) {
       goTo(currentIndex - 1);
     }
   });
 
-  wrapper.addEventListener('pointercancel', () => { isDragging = false; });
+  wrapper.addEventListener('pointercancel', () => { isDragging = false; hasDragged = false; });
 
   // Re-initialize on resize (breakpoint changes slides-per-view)
   let resizeTimer;
