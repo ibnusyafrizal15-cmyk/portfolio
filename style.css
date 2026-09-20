@@ -603,11 +603,14 @@ code, .tech-badge, .font-mono {
   overflow: hidden;
   border-radius: var(--radius-lg);
   position: relative;
-  cursor: grab;
   user-select: none;
 }
 
-.skills-carousel-wrapper:active {
+.skills-carousel-track {
+  cursor: grab;
+}
+
+.skills-carousel-track:active {
   cursor: grabbing;
 }
 
@@ -837,11 +840,14 @@ code, .tech-badge, .font-mono {
   overflow: hidden;
   border-radius: var(--radius-lg);
   position: relative;
-  cursor: grab;
   user-select: none;
 }
 
-.projects-carousel-wrapper:active {
+.projects-carousel-track {
+  cursor: grab;
+}
+
+.projects-carousel-track:active {
   cursor: grabbing;
 }
 
@@ -985,6 +991,14 @@ code, .tech-badge, .font-mono {
   gap: 12px;
   flex-wrap: wrap;
   margin-top: auto;
+  /* Ensure buttons inside cards are always clickable */
+  pointer-events: auto;
+  cursor: default;
+}
+
+.project-actions .btn {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 /* Coming Soon Card Styling */

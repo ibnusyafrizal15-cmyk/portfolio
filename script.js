@@ -193,40 +193,41 @@ function initProjectsCarousel() {
     if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex + 1); }
   });
 
-  // Drag / swipe support
+  // Drag / swipe support — attached to TRACK (not wrapper) so <a> and <button>
+  // inside project cards remain fully clickable without interference.
   let dragStartX = 0;
   let isDragging = false;
   let hasDragged = false;
   const DRAG_THRESHOLD = 60;
 
-  wrapper.addEventListener('pointerdown', (e) => {
-    // Only track primary pointer (ignore right-click, multi-touch secondary)
+  track.addEventListener('pointerdown', (e) => {
+    // Skip drag detection if the user clicked directly on a link or button
+    if (e.target.closest('a, button')) return;
     if (e.button !== 0) return;
     dragStartX = e.clientX;
     isDragging = true;
     hasDragged = false;
-    // NOTE: Do NOT call setPointerCapture here — it prevents <a> clicks inside the carousel
   });
 
-  wrapper.addEventListener('pointermove', (e) => {
+  track.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
     const delta = Math.abs(e.clientX - dragStartX);
     if (delta > DRAG_THRESHOLD) {
       hasDragged = true;
-      e.preventDefault(); // only block scrolling when clearly dragging
+      e.preventDefault();
     }
   }, { passive: false });
 
-  wrapper.addEventListener('pointerup', (e) => {
+  track.addEventListener('pointerup', (e) => {
     if (!isDragging) return;
     isDragging = false;
-    if (!hasDragged) return; // short movement = normal click, don't intercept
+    if (!hasDragged) return;
     const delta = dragStartX - e.clientX;
     if (delta > DRAG_THRESHOLD) goTo(currentIndex + 1);
     else if (delta < -DRAG_THRESHOLD) goTo(currentIndex - 1);
   });
 
-  wrapper.addEventListener('pointercancel', () => { isDragging = false; hasDragged = false; });
+  track.addEventListener('pointercancel', () => { isDragging = false; hasDragged = false; });
 
   // Responsive resize
   let resizeTimer;
@@ -422,34 +423,35 @@ function initSkillsCarousel() {
     if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex + 1); }
   });
 
-  // Pointer drag / touch swipe support
+  // Pointer drag / touch swipe support — attached to TRACK so links inside
+  // skill cards (if any) remain clickable.
   let dragStartX = 0;
   let isDragging = false;
   let hasDragged = false;
   const DRAG_THRESHOLD = 60;
 
-  wrapper.addEventListener('pointerdown', (e) => {
-    // Only track primary pointer (ignore right-click, multi-touch secondary)
+  track.addEventListener('pointerdown', (e) => {
+    // Skip drag detection if the user clicked directly on a link or button
+    if (e.target.closest('a, button')) return;
     if (e.button !== 0) return;
     dragStartX = e.clientX;
     isDragging = true;
     hasDragged = false;
-    // NOTE: Do NOT call setPointerCapture here — it prevents <a> clicks inside the carousel
   });
 
-  wrapper.addEventListener('pointermove', (e) => {
+  track.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
     const delta = Math.abs(e.clientX - dragStartX);
     if (delta > DRAG_THRESHOLD) {
       hasDragged = true;
-      e.preventDefault(); // only block scrolling when clearly dragging
+      e.preventDefault();
     }
   }, { passive: false });
 
-  wrapper.addEventListener('pointerup', (e) => {
+  track.addEventListener('pointerup', (e) => {
     if (!isDragging) return;
     isDragging = false;
-    if (!hasDragged) return; // short movement = normal click, don't intercept
+    if (!hasDragged) return;
     const delta = dragStartX - e.clientX;
     if (delta > DRAG_THRESHOLD) {
       goTo(currentIndex + 1);
@@ -458,7 +460,7 @@ function initSkillsCarousel() {
     }
   });
 
-  wrapper.addEventListener('pointercancel', () => { isDragging = false; hasDragged = false; });
+  track.addEventListener('pointercancel', () => { isDragging = false; hasDragged = false; });
 
   // Re-initialize on resize (breakpoint changes slides-per-view)
   let resizeTimer;
